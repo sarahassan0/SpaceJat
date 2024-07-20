@@ -1,0 +1,59 @@
+version: '3.8'
+
+services:
+  nats:
+    image: nats:latest
+    ports:
+      - "4222:4222"
+    command: "-DV"
+
+  meeting_service:
+    build:
+      context: .
+    command: ["node", "services/meeting-service.js"]
+    depends_on:
+      - nats
+    environment:
+      - NATS_URL=nats://nats:4222
+    ports:
+      - "8765:8765"
+
+
+  notification_service:
+    build:
+      context: .
+    command: ["node", "services/notification-service.js"]
+    depends_on:
+      - nats
+    environment:
+      - NATS_URL=nats://nats:4222
+
+
+  timeline_service:
+    build:
+      context: .
+    command: ["node", "services/timeline-service.js"]
+    depends_on:
+      - nats
+    environment:
+      - NATS_URL=nats://nats:4222
+
+
+  drive_service:
+    build:
+      context: .
+    command: ["node", "services/cloud-services/drive-service.js"]
+    depends_on:
+      - nats
+    environment:
+      - NATS_URL=nats://nats:4222
+
+
+  s3_service:
+    build:
+      context: .
+    command: ["node", "services/cloud-services/S3-service.js"]
+    depends_on:
+      - nats
+    environment:
+      - NATS_URL=nats://nats:4222

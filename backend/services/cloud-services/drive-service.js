@@ -4,7 +4,7 @@ import { connect, StringCodec } from "nats";
 
 (async () => {
   try {
-    const nc = await connect({ servers: "nats://localhost:4222" });
+    const nc = await connect({ servers: process.env.NATS_URL || "nats://localhost:4222" });
     const sc = StringCodec();
 
     console.log("Drive Service is running");
