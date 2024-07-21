@@ -5,7 +5,6 @@ services:
     image: nats:latest
     ports:
       - "4222:4222"
-    command: "-DV"
 
   meeting_service:
     build:
