@@ -11,13 +11,10 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/sarahassan0/Fastify-API.git"
+    "url": "git+https://github.com/sarahassan0/SpaceJat.git"
   },
   "author": "Sarah Hassan",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/sarahassan0/Fastify-API/issues"
-  },
   "devDependencies": {
     "nodemon": "^3.1.4"
   },
