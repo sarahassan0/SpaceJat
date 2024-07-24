@@ -1,0 +1,20 @@
+{
+  "name": "jetstream-ordered-consumers",
+  "version": "1.0.0",
+  "main": "pusher.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "nats": "^2.28.0",
+    "ws": "^8.18.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.4"
+  }
+}
