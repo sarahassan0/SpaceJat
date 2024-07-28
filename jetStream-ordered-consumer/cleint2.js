@@ -11,11 +11,11 @@ ws.on("open", () => {
     ws.send(i + 1);
     console.log(`${i + 1}St User reservation `);
   }
-  console.log("Client A Done");
+  console.log("Client B Done");
 });
 // // Event handler for when a message is received from the server
 ws.on("message", (message) => {
-  console.log(`Client A: ${message}`);
+  console.log(`Client B: ${message}`);
 });
 
 ws.on("error", (error) => {

@@ -1,4 +1,5 @@
 import { connect, StringCodec } from "nats";
+// import { socketObj } from "./server.js";
 
 (async () => {
   try {
@@ -8,30 +9,28 @@ import { connect, StringCodec } from "nats";
 
     console.log("Store is up and running");
 
-    const c = await js.consumers.get("reservationStream", {
-      durable_name: "reservationConsumer",
-    });
+    const c = await js.consumers.get(
+      "reservationStream",
+      "reservationConsumer"
+    );
 
     while (true) {
-      // Fetch messages from the consumer
-      let messages = await c.fetch({ max_messages: 10 });
-
-      // Iterate over messages
+      let messages = await c.fetch({ expires: 2000, max_messages: 20 });
       for await (const m of messages) {
-        console.log(
-          `First Store: ${sc.decode(
-            m.data
-          )} received a new message: ${sc.decode(m.data)}`
-        );
+        let { message, clientId } = JSON.parse(sc.decode(m.data));
+        console.log(`Processing message for client ${clientId}: ${message}`);
+        // const ws = socketObj[clientId];
+        // if (ws) {
+        //   ws.send(`Processed message: ${message}`);
         m.ack();
       }
-
-      console.log("Waiting for messages");
+      console.log(` Done`);
+      setTimeout(async () => {}, 2000);
     }
 
     process.on("SIGINT", async () => {
       await nc.drain();
-      console.log(" First Worker connection closed");
+      console.log("First Worker connection closed");
       process.exit();
     });
   } catch (err) {
