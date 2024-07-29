@@ -1,3 +1,5 @@
+// Client A
+
 import { WebSocket } from "ws";
 
 const wsUrl = "ws://localhost:8080";
@@ -9,11 +11,12 @@ ws.on("open", () => {
 
   for (let i = 0; i < 20; i++) {
     ws.send(i + 1);
-    console.log(`${i + 1}St User reservation `);
+    console.log(`Client A: ${i + 1}St User reservation `);
   }
   console.log("Client A Done");
 });
-// // Event handler for when a message is received from the server
+
+// Event handler for when a message is received from the server
 ws.on("message", (message) => {
   console.log(`Client A: ${message}`);
 });
@@ -23,5 +26,5 @@ ws.on("error", (error) => {
 });
 
 ws.on("close", () => {
-  console.log("WebSocket connection closed");
+  console.log("Client A connection closed");
 });

@@ -1,3 +1,5 @@
+// Client B
+
 import { WebSocket } from "ws";
 
 const wsUrl = "ws://localhost:8080";
@@ -9,7 +11,7 @@ ws.on("open", () => {
 
   for (let i = 0; i < 20; i++) {
     ws.send(i + 1);
-    console.log(`${i + 1}St User reservation `);
+    console.log(`Client B: ${i + 1}St User reservation `);
   }
   console.log("Client B Done");
 });
@@ -23,5 +25,5 @@ ws.on("error", (error) => {
 });
 
 ws.on("close", () => {
-  console.log("WebSocket connection closed");
+  console.log("Client connection closed");
 });

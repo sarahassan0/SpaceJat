@@ -21,8 +21,6 @@ import { connect } from "nats";
       await jsm.consumers.add(streamName, {
         durable_name: consumerName,
         ack_policy: "all",
-        // deliver_group: "store",
-        // deliver_subject: 'orderedMessages'
       });
       console.log(`Consumer ${consumerName} created successfully`);
     } catch (err) {
